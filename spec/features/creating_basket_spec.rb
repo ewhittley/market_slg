@@ -17,13 +17,13 @@ RSpec.feature "Creating Baskets" do
     login_as(@user1)
     visit "/"
 
-    expect(page).to have_content("Create Basket")
+    expect(page).to have_button("Create Basket")
   end
 
   scenario "a user cannot create a basket while signed out" do
     visit "/"
 
-    expect(page).not_to have_content("Create Basket")
+    expect(page).not_to have_button("Create Basket")
     expect(page).to have_content("You must Sign up or Sign in to create a basket")
   end
 
