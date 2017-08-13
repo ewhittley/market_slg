@@ -1,0 +1,5 @@
+<% if user_signed_in? %>
+  <%= link_to "New Product", new_product_path, class: "btn btn-primary btn-lg" %>
+<% else %>
+  You must Sign up or Sign in to create a product
+<% end %>
