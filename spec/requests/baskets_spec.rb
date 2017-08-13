@@ -15,6 +15,8 @@ RSpec.describe "Baskets", type: :request do
 
       it "handles non-existing basket" do
         expect(response.status).to eq 302
+        flash_message = "Basket does not exist"
+        expect(flash[:alert]).to eq flash_message
       end
     end
 
@@ -37,6 +39,8 @@ RSpec.describe "Baskets", type: :request do
 
       it "does not allow user to see basket they are not owner of" do
         expect(response.status).to eq 302
+        flash_message = "You cannot view a basket that is not yours"
+        expect(flash[:alert]).to eq flash_message
       end
     end
 
@@ -47,6 +51,8 @@ RSpec.describe "Baskets", type: :request do
 
       it "does not allow user to see basket they are not owner of" do
         expect(response.status).to eq 302
+        flash_message = "You must sign in before viewing a basket"
+        expect(flash[:alert]).to eq flash_message
       end
     end
   end
@@ -57,6 +63,8 @@ RSpec.describe "Baskets", type: :request do
 
       it "handles non-existing basket" do
         expect(response.status).to eq 302
+        flash_message = "Basket does not exist"
+        expect(flash[:alert]).to eq flash_message
       end
     end
 
@@ -67,6 +75,7 @@ RSpec.describe "Baskets", type: :request do
       end
 
       it "successfully deletes basket" do
+        # re-routes on successful delete
         expect(response.status).to eq 302
       end
     end
@@ -79,6 +88,8 @@ RSpec.describe "Baskets", type: :request do
 
       it "does not allow user to delete basket they are not owner of" do
         expect(response.status).to eq 302
+        flash_message = "You cannot delete a basket that is not yours"
+        expect(flash[:alert]).to eq flash_message
       end
     end
 
@@ -89,6 +100,8 @@ RSpec.describe "Baskets", type: :request do
 
       it "does not allow user to delete basket they are not owner of" do
         expect(response.status).to eq 302
+        flash_message = "You must sign in before deleting a basket"
+        expect(flash[:alert]).to eq flash_message
       end
     end
     end
