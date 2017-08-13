@@ -104,6 +104,5 @@ RSpec.describe "Baskets", type: :request do
         expect(flash[:alert]).to eq flash_message
       end
     end
-    end
   end
 end

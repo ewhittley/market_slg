@@ -45,6 +45,38 @@ RSpec.describe "Products", type: :request do
   end
 
   describe 'DELETE/products/:id' do
+    context "with a product that does not exist" do
+      before { delete "/products/xxxx" }
 
+      it "handles non-existing product" do
+        expect(response.status).to eq 302
+        flash_message = "Product does not exist"
+        expect(flash[:alert]).to eq flash_message
+      end
+    end
+
+    context "with a user who is signed in and a product that does exist" do
+      before do
+        login_as(@user1)
+        delete "/products/#{@product1.id}"
+      end
+
+      it "successfully deletes product" do
+        # re-routes on successful delete
+        expect(response.status).to eq 302
+      end
+    end
+
+    context "with a user who is not signed in" do
+      before do
+        delete "/products/#{@product1.id}"
+      end
+
+      it "does not allow user to delete product" do
+        expect(response.status).to eq 302
+        flash_message = "You must sign in before deleting a product"
+        expect(flash[:alert]).to eq flash_message
+      end
+    end
   end
 end
