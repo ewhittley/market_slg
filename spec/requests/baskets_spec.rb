@@ -53,19 +53,44 @@ RSpec.describe "Baskets", type: :request do
 
   describe "DELETE/baskets/:id" do
     context "with a basket that does not exist" do
+      before { delete "/baskets/xxxx" }
 
+      it "handles non-existing basket" do
+        expect(response.status).to eq 302
+      end
     end
 
     context "with a basket that belongs to current user" do
+      before do
+        login_as(@user1)
+        delete "/baskets/#{@basket1.id}"
+      end
 
+      it "successfully deletes basket" do
+        expect(response.status).to eq 302
+      end
     end
 
     context "with a basket that does not belong to current user" do
+      before do
+        login_as(@user2)
+        delete "/baskets/#{@basket1.id}"
+      end
 
+      it "does not allow user to delete basket they are not owner of" do
+        expect(response.status).to eq 302
+      end
     end
 
     context "with a user who is not signed in" do
+      before do
+        delete "/baskets/#{@basket1.id}"
+      end
 
+      it "does not allow user to delete basket they are not owner of" do
+        expect(response.status).to eq 302
+      end
+    end
     end
   end
 end
