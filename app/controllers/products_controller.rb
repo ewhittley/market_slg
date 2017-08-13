@@ -10,7 +10,10 @@ class ProductsController < ApplicationController
   end
 
   def show
-
+    unless user_signed_in?
+      flash[:alert] = "You must sign in before viewing a product"
+      redirect_to root_path
+    end
   end
 
   def create
@@ -23,6 +26,26 @@ class ProductsController < ApplicationController
       render :new
     end
   end
+
+  def destroy
+    if user_signed_in?
+      if @product.destroy
+        flash[:success] = "Product has been deleted"
+        redirect_to products_path
+      end
+    else
+      flash[:alert] = "You must sign in before deleting a product"
+      redirect_to root_path
+    end
+  end
+
+  protected
+
+    def page_not_found
+      message = "Product does not exist"
+      flash[:alert] = message
+      redirect_to root_path
+    end
 
   private
 
