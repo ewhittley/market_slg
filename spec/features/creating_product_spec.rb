@@ -36,6 +36,8 @@ RSpec.feature "Creating Product" do
     fill_in "Name", with: ""
     fill_in "Price", with: ""
 
+    click_button "Create Product"
+
     expect(page).to have_content("Product has not been created.")
     # expect(page).to have_content("Code can't be blank")
     # expect(page).to have_content("Name can't be blank")
