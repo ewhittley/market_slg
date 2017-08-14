@@ -3,6 +3,11 @@ class BasketItemsController < ApplicationController
 
   def create
     @basket_item = @basket.basket_items.new(basket_item_params)
+
+    unless @basket_item.save
+      flash.now[:alert] = "Item has not been added"
+    end
+
     redirect_to basket_path(@basket)
   end
 
