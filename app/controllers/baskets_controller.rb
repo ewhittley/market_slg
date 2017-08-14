@@ -17,6 +17,9 @@ class BasketsController < ApplicationController
   end
 
   def show
+    @basket_item = @basket.basket_items.new
+    @basket_items = @basket.basket_items
+
     if user_signed_in?
       unless @basket.user == current_user
         flash[:alert] = "You cannot view a basket that is not yours"
