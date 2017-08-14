@@ -16,7 +16,7 @@ RSpec.feature "Adding Basket Items to Basket" do
 
     expect{
       click_button "Add Item"
-    }.to change(Basket_item, :count).by(1)
+    }.to change(BasketItem, :count).by(1)
 
     expect(page).to have_content(@product1.code)
     expect(page).to have_content(@product1.price)
