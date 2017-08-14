@@ -12,7 +12,7 @@ RSpec.feature "Adding Basket Items to Basket" do
   scenario "a user adds a basket item to their basket" do
     login_as(@user1)
     visit "/baskets/#{@basket1.id}"
-    select("EG1", from: "product_code")
+    select("EG1", from: "basket_items_product_id")
 
     expect{
       click_button "Add Item"
