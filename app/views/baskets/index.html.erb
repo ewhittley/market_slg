@@ -1,9 +1,11 @@
 <%= form_for(@basket, :html => {class: "form-horizontal", role: "form"}) do |f| %>
-  <div>
-    <% if user_signed_in? %>
-      <%= f.submit %>
-    <% else %>
-      You must Sign up or Sign in to create a basket
-    <% end %>
+  <div class="form-group">
+    <div class="col-md-offset-1 col-md-11">
+      <% if user_signed_in? %>
+        <%= f.submit class: "btn btn-primary btn-lg pull-right" %>
+      <% else %>
+        You must Sign up or Sign in to create a basket
+      <% end %>
+    </div>
   </div>
 <% end %>
