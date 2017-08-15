@@ -1,5 +1,19 @@
 <% if user_signed_in? %>
   <%= link_to "New Product", new_product_path, class: "btn btn-primary btn-lg" %>
+
+  <% @products.each do |product| %>
+    <div class="row">
+      <div class="col-md-1 col-md-offset-1">
+        <%= link_to product.code, product_path(product) %>
+      </div>
+      <div class="col-md-2">
+        <%= product.name %>
+      </div>
+      <div class="col-md-1">
+        <%= product.price %>
+      </div>
+    </div>
+  <% end %>
 <% else %>
   You must Sign up or Sign in to create a product
 <% end %>
