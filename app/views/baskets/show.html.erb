@@ -5,10 +5,10 @@
         <%= f.label "Product Code", id: 'product-code' %>
       </div>
       <div class="col-md-4">
-        <%= f.collection_select :product_id, Product.all, :id, :code, class: "form-control", autofocus: true %>
+        <%= f.collection_select :product_id, Product.all, :id, :code, {}, {class: "form-control", autofocus: true} %>
       </div>
-      <div class="col-md-1 col-md-offset-1">
-        <%= f.submit "Add Item", class: "btn btn-primary btn-lg pull-right" %>
+      <div class="col-md-1">
+        <%= f.submit "Add Item", class: "btn btn-primary pull-right" %>
       </div>
     </div>
 
