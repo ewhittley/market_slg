@@ -10,7 +10,7 @@ RSpec.feature "Showing Baskets" do
     visit "/"
     click_link "Basket"
 
-    expect(page.current_path).to eq(basket_path(@user1.current_basket.id))
+    expect(page.current_path).to eq(basket_path(current_basket))
   end
 
 end
